@@ -1,5 +1,9 @@
 ---
 title: Privacy Policy - Mosaic
+#ファビコン(アプリのアイコン。このページからの相対パス)
+icon: favicon.png
+icon_large: icon-192.png
+apple_touch_icon: apple-touch-icon.png
 ---
 
 <div class="lang-section" lang="en" markdown="1">

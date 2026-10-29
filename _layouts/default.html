@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title | default: site.title }}</title>
+  {% if page.icon %}<link rel="icon" type="image/png" sizes="48x48" href="{{ page.icon }}">{% endif %}
+  {% if page.icon_large %}<link rel="icon" type="image/png" sizes="192x192" href="{{ page.icon_large }}">{% endif %}
+  {% if page.apple_touch_icon %}<link rel="apple-touch-icon" href="{{ page.apple_touch_icon }}">{% endif %}
   <script>
     (function () {
       var params = new URLSearchParams(location.search);

@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: 'en' }}">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title | default: site.title }}</title>
   <script>
-    // アプリから ?theme=dark を付けて開いた時だけダークモードにする(ブラウザで開いた時は明るいまま)
-    if (/[?&]theme=dark(&|$)/.test(location.search)) document.documentElement.classList.add('dark');
+    (function () {
+      var params = new URLSearchParams(location.search);
+      var root = document.documentElement;
+      // アプリから ?theme=dark を付けて開いた時だけダークモードにする(ブラウザで開いた時は明るいまま)
+      var isApp = params.get('theme') === 'dark';
+      if (isApp) root.classList.add('dark', 'app');
+      // 表示する言語: ?lang= の指定(アプリは端末の言語を付けて開く)、無ければブラウザの言語。対応していない言語は英語
+      var supported = ['en', 'ja'];
+      var lang = (params.get('lang') || navigator.language || 'en').slice(0, 2).toLowerCase();
+      if (supported.indexOf(lang) < 0) lang = 'en';
+      root.setAttribute('lang', lang);
+      root.classList.add('js');
+    })();
   </script>
   <style>
     :root {
@@ -15,6 +26,7 @@
       --sub: #59636e;
       --link: #0969da;
       --border: #d1d9e0;
+      --control: #f6f8fa;
     }
     html.dark {
       color-scheme: dark;
@@ -23,6 +35,7 @@
       --sub: #a0a0a0;
       --link: #7ab7ff;
       --border: #333333;
+      --control: #1c1c1e;
     }
     html { background: var(--bg); }
     body {
@@ -45,9 +58,51 @@
     hr { border: 0; border-top: 1px solid var(--border); margin: 2.5em 0; }
     table { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+
+    /* 言語の切り替え。スクリプトが動かない時は全言語を並べて表示する */
+    .lang-switch { display: none; justify-content: flex-end; align-items: center; gap: 8px; font-size: 14px; color: var(--sub); }
+    .lang-switch select {
+      font: inherit;
+      color: var(--text);
+      background: var(--control);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 8px;
+    }
+    html.js .lang-switch { display: flex; }
+    html.app .lang-switch { display: none; }
+    html.js .lang-section { display: none; }
+    html.js:lang(en) .lang-section:lang(en),
+    html.js:lang(ja) .lang-section:lang(ja) { display: block; }
   </style>
 </head>
 <body>
+<div class="lang-switch">
+  <label for="lang-select">Language</label>
+  <select id="lang-select">
+    <option value="en">English</option>
+    <option value="ja">日本語</option>
+  </select>
+</div>
 {{ content }}
+<script>
+  (function () {
+    var root = document.documentElement;
+    var select = document.getElementById('lang-select');
+    // 言語ごとの本文が無いページ(一覧など)では切り替えを出さない
+    if (!document.querySelector('.lang-section')) {
+      select.parentNode.remove();
+      return;
+    }
+    select.value = root.getAttribute('lang');
+    select.addEventListener('change', function () {
+      root.setAttribute('lang', select.value);
+      // 選んだ言語を URL に残し、共有や再読み込みでも同じ言語で開けるようにする
+      var params = new URLSearchParams(location.search);
+      params.set('lang', select.value);
+      history.replaceState(null, '', location.pathname + '?' + params.toString() + location.hash);
+    });
+  })();
+</script>
 </body>
 </html>

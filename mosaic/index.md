@@ -2,9 +2,8 @@
 title: Privacy Policy - Mosaic
 ---
 
+<div class="lang-section" lang="en" markdown="1">
 # Privacy Policy for Mosaic
-
-[日本語](#日本語)
 
 Last updated: October 29, 2026
 
@@ -57,9 +56,9 @@ We may update this privacy policy from time to time. Changes take effect when th
 
 If you have any questions about this privacy policy, please contact us at [photograph.app@gmail.com](mailto:photograph.app@gmail.com).
 
----
+</div>
 
-## 日本語
+<div class="lang-section" lang="ja" markdown="1">
 
 # 「モザイク」プライバシーポリシー
 
@@ -113,3 +112,5 @@ If you have any questions about this privacy policy, please contact us at [photo
 ## お問い合わせ
 
 このプライバシーポリシーに関するお問い合わせは、[photograph.app@gmail.com](mailto:photograph.app@gmail.com) までご連絡ください。
+
+</div>

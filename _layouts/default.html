@@ -8,8 +8,9 @@
     (function () {
       var params = new URLSearchParams(location.search);
       var root = document.documentElement;
-      // アプリから ?theme=dark を付けて開いた時だけダークモードにする(ブラウザで開いた時は明るいまま)
-      var isApp = params.get('theme') === 'dark';
+      // アプリから ?fromapp=true を付けて開いた時は、アプリの画面に合わせてダークモードにし、
+      // タイトル(アプリのヘッダーに出す)と言語の切り替えを隠す。ブラウザで開いた時は明るいまま
+      var isApp = params.get('fromapp') === 'true';
       if (isApp) root.classList.add('dark', 'app');
       // 表示する言語: ?lang= の指定(アプリは端末の言語を付けて開く)。指定が無い時や対応していない言語は英語
       var supported = ['en', 'ja'];
@@ -72,6 +73,7 @@
     }
     html.js .lang-switch { display: flex; }
     html.app .lang-switch { display: none; }
+    html.app .lang-section > h1:first-child { display: none; }
     html.js .lang-section { display: none; }
     html.js:lang(en) .lang-section:lang(en),
     html.js:lang(ja) .lang-section:lang(ja) { display: block; }

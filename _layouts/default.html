@@ -11,9 +11,9 @@
       // アプリから ?theme=dark を付けて開いた時だけダークモードにする(ブラウザで開いた時は明るいまま)
       var isApp = params.get('theme') === 'dark';
       if (isApp) root.classList.add('dark', 'app');
-      // 表示する言語: ?lang= の指定(アプリは端末の言語を付けて開く)、無ければブラウザの言語。対応していない言語は英語
+      // 表示する言語: ?lang= の指定(アプリは端末の言語を付けて開く)。指定が無い時や対応していない言語は英語
       var supported = ['en', 'ja'];
-      var lang = (params.get('lang') || navigator.language || 'en').slice(0, 2).toLowerCase();
+      var lang = (params.get('lang') || 'en').slice(0, 2).toLowerCase();
       if (supported.indexOf(lang) < 0) lang = 'en';
       root.setAttribute('lang', lang);
       root.classList.add('js');
@@ -58,6 +58,7 @@
     hr { border: 0; border-top: 1px solid var(--border); margin: 2.5em 0; }
     table { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+    .updated { margin-top: 3em; font-size: 0.85em; color: var(--sub); }
 
     /* 言語の切り替え。スクリプトが動かない時は全言語を並べて表示する */
     .lang-switch { display: none; justify-content: flex-end; align-items: center; gap: 8px; font-size: 14px; color: var(--sub); }

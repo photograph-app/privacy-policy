@@ -5,8 +5,6 @@ title: Privacy Policy - Mosaic
 <div class="lang-section" lang="en" markdown="1">
 # Privacy Policy for Mosaic
 
-Last updated: October 29, 2026
-
 This privacy policy explains how the Android app "Mosaic" (the "App"), provided by Photograph, handles your information.
 
 ## Photos and videos
@@ -56,13 +54,13 @@ We may update this privacy policy from time to time. Changes take effect when th
 
 If you have any questions about this privacy policy, please contact us at [photograph.app@gmail.com](mailto:photograph.app@gmail.com).
 
+<p class="updated">Last updated: October 29, 2026</p>
+
 </div>
 
 <div class="lang-section" lang="ja" markdown="1">
 
 # 「モザイク」プライバシーポリシー
-
-最終更新日: 2026年10月29日
 
 このプライバシーポリシーは、Photograph が提供する Android アプリ「モザイク」(以下「本アプリ」)における、利用者の情報の取り扱いについて説明するものです。
 
@@ -112,5 +110,7 @@ If you have any questions about this privacy policy, please contact us at [photo
 ## お問い合わせ
 
 このプライバシーポリシーに関するお問い合わせは、[photograph.app@gmail.com](mailto:photograph.app@gmail.com) までご連絡ください。
+
+<p class="updated">最終更新日: 2026年10月29日</p>
 
 </div>
